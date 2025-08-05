@@ -1,37 +1,87 @@
-# Local .terraform directories
-.terraform/
+# ---------------------------
+# Terraform
+# ---------------------------
 
-# .tfstate files
+.terraform/
 *.tfstate
 *.tfstate.*
-
-# Crash log files
 crash.log
 crash.*.log
-
-# Exclude all .tfvars files, which are likely to contain sensitive data, such as
-# password, private keys, and other secrets. These should not be part of version 
-# control as they are data points which are potentially sensitive and subject 
-# to change depending on the environment.
 *.tfvars
 *.tfvars.json
-
-# Ignore override files as they are usually used to override resources locally and so
-# are not checked in
+.terraform.tfstate.lock.info
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
-
-# Ignore transient lock info files created by terraform apply
-.terraform.tfstate.lock.info
-
-# Include override files you do wish to add to version control using negated pattern
-# !example_override.tf
-
-# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
-# example: *tfplan*
-
-# Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# ---------------------------
+# Packer
+# ---------------------------
+
+*.pkrvars.hcl
+*.auto.pkrvars.hcl
+packer_cache/
+output/
+
+# ---------------------------
+# Ansible
+# ---------------------------
+
+# Vault password files or secrets
+*.vault_pass.txt
+*.vault.yaml
+*.secrets.yaml
+
+# Inventory backups or dynamic cache
+*.retry
+*.log
+*.bak
+*.tmp
+ansible.log
+inventory/*~    # backup files
+
+# Ansible roles installed via galaxy (optional)
+roles/           # only if roles are installed dynamically (can be kept if version-controlled)
+
+# SSH key files (if generated locally for provisioning)
+*.pem
+*.key
+
+# ---------------------------
+# Kubernetes
+# ---------------------------
+
+k8s/secrets.yaml
+k8s/overrides/
+k8s/tmp/
+*.values.yaml
+*.secrets.yaml
+
+# ---------------------------
+# General / OS-level
+# ---------------------------
+
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+*.log
+
+# ---------------------------
+# Editor/IDE
+# ---------------------------
+
+.vscode/
+.idea/
+*.iml
+
+# ---------------------------
+# Git
+# ---------------------------
+
+.git-credentials
+.git/hooks/*
