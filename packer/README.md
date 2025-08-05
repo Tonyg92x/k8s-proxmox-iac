@@ -11,12 +11,14 @@ This project uses [Packer](https://www.packer.io/) to automatically build a **De
 
 ## 🧰 Project Structure
 
+```
 packer/
 ├── packer.pkr.hcl # Main Packer configuration
 ├── http/
 │ └── preseed.cfg # Debian automated installation preseed file
 ├── scripts/
 │ └── cleanup.sh # Cleanup script executed before template conversion
+```
 
 ---
 

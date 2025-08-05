@@ -15,6 +15,8 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 ---
 
 ## 📦 Project Structure
+
+```
 .
 ├── ansible/ # Roles, playbooks, inventory
 ├── k8s/ # Kubernetes manifests, Helm charts
@@ -23,13 +25,12 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 ├── .github/ # GitHub Actions (CI/CD)
 ├── .gitignore
 └── README.md
-
+```
 
 ---
 
 ## 🧰 Technologies Used
 
-.___________________________________________________________________________.
 | Layer                     | Tooling                                       |
 |---------------------------|-----------------------------------------------|
 | VM image creation         | Packer + Preseed (Debian)                     |
@@ -38,7 +39,6 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 | Container orchestration   | Kubernetes (via kubeadm or k3s)               |
 | Secrets & security        | CIS-compliant partitioning, Ansible vaults    |
 | CI/CD                     | GitHub Actions (optional)                     |
-.___________________________|_______________________________________________.
 
 ---
 
@@ -63,7 +63,6 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 
 ## 🛠️ Requirements
 
-._______________________________________________________________________.
 | Tool                                      | Minimum Version           |
 |-------------------------------------------|---------------------------|
 | [Packer](https://www.packer.io/)          | 1.9+                      |
@@ -71,7 +70,6 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 | [Ansible](https://www.ansible.com/)       | 2.12+                     |
 | [Proxmox VE](https://www.proxmox.com/)    | 7.x or 8.x                |
 | macOS/Linux                               | (development platform)    |
-.___________________________________________|___________________________.
 
 > Note: Apple Silicon (M1/M2/M3) users cannot run `qemu` natively for x86_64 image builds — use the Proxmox builder plugin instead.
 
@@ -129,5 +127,3 @@ This project was designed and built by **Anthony**, as a self-hosted DevOps lab 
 MIT — do whatever you want, just don't blame me if it breaks your cluster.
 
 ---
-
-Let me know if you'd like help generating a `roadmap.md`, `CONTRIBUTING.md`, or writing task documentation for each layer (Terraform modules, Ansible playbooks, etc.)!
