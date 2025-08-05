@@ -4,13 +4,11 @@
 
 This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to build, configure, and deploy a secure, production-grade Kubernetes cluster on a **self-hosted Proxmox environment**, using:
 
-- 🧱 **Packer** – to create custom Debian-based VM templates (CIS-compliant)
+- 🧱 **Packer** – to create custom Debian-based VM templates
 - 🌍 **Terraform** – to deploy and manage Proxmox virtual machines
 - ⚙️ **Ansible** – to configure the VMs and bootstrap Kubernetes
 - ☸️ **Kubernetes** – to orchestrate containerized apps
 - 🚀 **GitHub** – to showcase version-controlled, portable DevOps workflows
-
-> 🏠 This project is designed to be fully portable and automated. Ideal for self-hosting, home lab setups, or showcasing DevOps capabilities in a portfolio.
 
 ---
 
@@ -36,8 +34,8 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 | VM image creation         | Packer + Preseed (Debian)                     |
 | VM provisioning           | Terraform (Proxmox provider)                  |
 | Configuration Mgmt        | Ansible                                       |
-| Container orchestration   | Kubernetes (via kubeadm or k3s)               |
-| Secrets & security        | CIS-compliant partitioning, Ansible vaults    |
+| Container orchestration   | Kubernetes (via k8s)                          |
+| Secrets & security        | Ansible vaults                                |
 | CI/CD                     | GitHub Actions (optional)                     |
 
 ---
@@ -45,7 +43,7 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 ## 🚀 Workflow Overview
 
 1. **Image build**  
-   Use Packer to build a hardened Debian image (with CIS partitioning) and prepare it for cloud-init or static SSH provisioning.
+   Use Packer to build a hardened Debian image and prepare it for cloud-init or static SSH provisioning.
 
 2. **Infrastructure deployment**  
    Use Terraform to interact with Proxmox and deploy VMs using the image built in step 1.
@@ -71,13 +69,11 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 | [Proxmox VE](https://www.proxmox.com/)    | 7.x or 8.x                |
 | macOS/Linux                               | (development platform)    |
 
-> Note: Apple Silicon (M1/M2/M3) users cannot run `qemu` natively for x86_64 image builds — use the Proxmox builder plugin instead.
 
 ---
 
 ## 🔐 Security Highlights
 
-- CIS-compliant disk partitioning with mount options (`nodev`, `noexec`, `nosuid`)
 - Secrets and passwords excluded via `.gitignore`
 - Ansible vaults and variable encryption (optional)
 - Separate Kubernetes namespaces and RBAC (if implemented)
@@ -86,20 +82,19 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 
 ## 🛣️ Roadmap
 
-### 🔨 Phase 1: Image & Template Preparation
-- [ ] Create a CIS-compliant Debian image using Packer
-- [ ] Automate disk partitioning using `preseed.cfg`
-- [ ] Add provisioning scripts (e.g., Docker, SSH)
-- [ ] Export `.qcow2` image and import it into Proxmox
-- [ ] Convert the image into a reusable VM template
+### 🔨 Phase 1: Image & Template Preparation (Packer)
+- [*] Create a Debian image using Packer
+- [*] Automate disk partitioning using `preseed.cfg`
+- [*] Add provisioning scripts (e.g., Docker, SSH)
+- [*] Convert the image into a reusable VM template
 
-### ☁️ Phase 2: Infrastructure Provisioning (Proxmox)
+### ☁️ Phase 2: Infrastructure Provisioning (Proxmox + Terraform)
 - [ ] Use Terraform to deploy 3 virtual machines from the template
 - [ ] Configure VM specs, networks, and SSH access via cloud-init or static setup
 
 ### ⚙️ Phase 3: Cluster Bootstrap with Ansible
 - [ ] Create an Ansible inventory based on Terraform outputs
-- [ ] Install and configure Kubernetes (kubeadm or k3s) on the VMs
+- [ ] Install and configure Kubernetes (k8s) on the VMs
 - [ ] Setup control plane and join worker nodes
 - [ ] Install core Kubernetes utilities (container runtime, CNI, etc.)
 
