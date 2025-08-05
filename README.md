@@ -83,10 +83,10 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 ## 🛣️ Roadmap
 
 ### 🔨 Phase 1: Image & Template Preparation (Packer)
-- [*] Create a Debian image using Packer
-- [*] Automate disk partitioning using `preseed.cfg`
-- [*] Add provisioning scripts (e.g., Docker, SSH)
-- [*] Convert the image into a reusable VM template
+- [x] Create a Debian image using Packer
+- [x] Automate disk partitioning using `preseed.cfg`
+- [x] Add provisioning scripts (e.g., Docker, SSH)
+- [x] Convert the image into a reusable VM template
 
 ### ☁️ Phase 2: Infrastructure Provisioning (Proxmox + Terraform)
 - [ ] Use Terraform to deploy 3 virtual machines from the template
