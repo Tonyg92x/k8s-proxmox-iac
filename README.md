@@ -89,8 +89,7 @@ This project demonstrates a complete Infrastructure-as-Code (IaC) pipeline to bu
 - [x] Convert the image into a reusable VM template
 
 ### ☁️ Phase 2: Infrastructure Provisioning (Proxmox + Terraform)
-- [ ] Use Terraform to deploy 3 virtual machines from the template
-- [ ] Configure VM specs, networks, and SSH access via cloud-init or static setup
+- [x] Use Terraform to deploy virtual machines from the template
 
 ### ⚙️ Phase 3: Cluster Bootstrap with Ansible
 - [ ] Create an Ansible inventory based on Terraform outputs
