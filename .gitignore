@@ -16,6 +16,8 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+*plan
+*.terraform.lock.hcl
 
 # ---------------------------
 # Packer
