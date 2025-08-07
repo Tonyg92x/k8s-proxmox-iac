@@ -1,0 +1,7 @@
+[k8s_master]
+192.168.4.101 ansible_user=tonyg ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=master node_id=k8s-master-1
+
+[k8s_worker]
+192.168.4.201 ansible_user=tonyg ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=worker node_id=k8s-worker-1
+192.168.4.202 ansible_user=tonyg ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=worker node_id=k8s-worker-2
+192.168.4.203 ansible_user=tonyg ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=worker node_id=k8s-worker-3

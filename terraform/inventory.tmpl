@@ -1,0 +1,9 @@
+[k8s_master]
+%{ for idx, vm in master_vms ~}
+${vm.default_ipv4_address} ansible_user=${cloudinit_username} ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=master node_id=${vm.name}
+%{ endfor ~}
+
+[k8s_worker]
+%{ for idx, vm in worker_vms ~}
+${vm.default_ipv4_address} ansible_user=${cloudinit_username} ansible_ssh_private_key_file=~/.ssh/id_ed25519 role=worker node_id=${vm.name}
+%{ endfor ~}

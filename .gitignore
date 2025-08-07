@@ -36,6 +36,8 @@ output/
 *.vault_pass.txt
 *.vault.yaml
 *.secrets.yaml
+./ansible/inventory.yaml
+./ansible/inventory.yml
 
 # Inventory backups or dynamic cache
 *.retry

@@ -36,7 +36,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
     sshkeys             = var.cloudinit_ssh_pub
     searchdomain        = var.cloudinit_searchdomain
     nameserver          = var.cloudinit_dns
-    ipconfig0           = var.cloudinit_ipconfig
+    ipconfig0           = "ip=${cidrhost(var.cloudinit_subnet, var.cloudinit_net_first_ip_master + count.index)}/24,gw=${var.cloudinit_gateway}"
+    ipconfig1           = "ip=${cidrhost(var.cloudinit_subnet_data, var.cloudinit_net_first_ip_master + count.index)}/24,gw=${var.cloudinit_gateway_data}"
     ciupgrade           = true
 
     cpu {
@@ -66,6 +67,16 @@ resource "proxmox_vm_qemu" "k8s-master" {
         model       = "virtio"
         bridge      = "vmbr0"
         firewall    = false
+    }
+
+    dynamic "network" {
+        for_each = var.eneable_data_network ? [1] : []
+        content {
+            id     = 1
+            model  = "virtio"
+            bridge = "vmbr1"
+            firewall    = false
+        }
     }
 }
 
@@ -91,7 +102,8 @@ resource "proxmox_vm_qemu" "k8s-worker" {
     sshkeys             = var.cloudinit_ssh_pub
     searchdomain        = var.cloudinit_searchdomain
     nameserver          = var.cloudinit_dns
-    ipconfig0           = var.cloudinit_ipconfig
+    ipconfig0           = "ip=${cidrhost(var.cloudinit_subnet, var.cloudinit_net_first_ip_worker + count.index)}/24,gw=${var.cloudinit_gateway}"
+    ipconfig1           = "ip=${cidrhost(var.cloudinit_subnet_data, var.cloudinit_net_first_ip_worker + count.index)}/24,gw=${var.cloudinit_gateway_data}"
     ciupgrade           = true
 
     cpu {
@@ -122,4 +134,23 @@ resource "proxmox_vm_qemu" "k8s-worker" {
         bridge      = "vmbr0"
         firewall    = false
     }
+
+    dynamic "network" {
+        for_each = var.eneable_data_network ? [1] : []
+        content {
+            id     = 1
+            model  = "virtio"
+            bridge = "vmbr1"
+            firewall    = false
+        }
+    }
+}
+
+resource "local_file" "ansible_inventory" {
+  content = templatefile("${path.module}/inventory.tmpl", {
+    master_vms          = proxmox_vm_qemu.k8s-master
+    worker_vms          = proxmox_vm_qemu.k8s-worker
+    cloudinit_username  = var.cloudinit_username
+  })
+  filename = "${path.module}/../ansible/inventory.yaml"
 }

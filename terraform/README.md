@@ -46,13 +46,22 @@ pm_node_1           = "pmox-s01"
 k8s_master_nb       = 1
 k8s_worker_nb       = 3
 
-cloudinit_username      = "debian"
-cloudinit_password      = "your_secure_password"
-cloudinit_ssh_pub       = "ssh-rsa AAAA..."
-cloudinit_searchdomain  = "yourdomain.local"
-cloudinit_dns           = "192.168.1.1"
-cloudinit_ipconfig      = "ip=192.168.1.100/24,gw=192.168.1.1"
+cloudinit_username              = "debian"
+cloudinit_password              = "your_secure_password"
+cloudinit_ssh_pub               = "ssh-rsa AAAA..."
+cloudinit_searchdomain          = "yourdomain.local"
+cloudinit_dns                   = "192.168.1.1"
+cloudinit_subnet                = "192.168.1.0/24"
+cloudinit_net_first_ip_master   = 100
+cloudinit_net_first_ip_worker   = 200
+
+#   Optional, second network interface for network storage on fiber connection
+eneable_data_network            = false
+cloudinit_subnet_data           = "192.168.2.0/24"
+cloudinit_gateway_data          = "192.168.2.1"
 ```
+
+The first network connection must be named vmbr0 and the second one must be named vmbr1
 
 ---
 

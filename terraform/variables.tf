@@ -24,6 +24,11 @@ variable "k8s_worker_nb" {
   type = number
 }
 
+variable "eneable_data_network" {
+  type = bool
+  default = false
+}
+
 variable "cloudinit_username" {
   type = string
   sensitive = true
@@ -41,15 +46,39 @@ variable "cloudinit_ssh_pub" {
 
 variable "cloudinit_searchdomain" {
   type = string
-  sensitive = true
 }
 
 variable "cloudinit_dns" {
   type = string
-  sensitive = true
 }
 
-variable "cloudinit_ipconfig" {
+variable "cloudinit_subnet" {
   type = string
-  sensitive = true
+}
+
+variable "cloudinit_net_first_ip_master" {
+  type = number
+}
+
+variable "cloudinit_net_first_ip_worker" {
+  type = number
+}
+
+variable "cloudinit_gateway" {
+  type = string
+}
+
+variable "cloudinit_subnet_data" {
+  type = string
+  default = "Null"
+}
+
+variable "cloudinit_net_first_ip_data" {
+  type = string
+  default = "Null"
+}
+
+variable "cloudinit_gateway_data" {
+  type = string
+  default = "Null"
 }
