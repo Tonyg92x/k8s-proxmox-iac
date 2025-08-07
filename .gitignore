@@ -36,8 +36,6 @@ output/
 *.vault_pass.txt
 *.vault.yaml
 *.secrets.yaml
-./ansible/inventory.yaml
-./ansible/inventory.yml
 
 # Inventory backups or dynamic cache
 *.retry
@@ -46,6 +44,8 @@ output/
 *.tmp
 ansible.log
 inventory/*~    # backup files
+ansible/inventory.yaml
+ansible/inventory.yml
 
 # Ansible roles installed via galaxy (optional)
 roles/           # only if roles are installed dynamically (can be kept if version-controlled)
